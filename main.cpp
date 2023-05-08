@@ -8,11 +8,22 @@ using namespace std;
 int main(){
    bool padButtonPressed = false;
    bool tamponButtonPressed = false;
+   bool padIsChosen = false;
+   bool tamponIsChosen = false;
    bool dispensing = false;
    int dispenseTime = 5000; // 5 seconds
 
    while(true){
    // Selecting and checking if the buttons are pressed
+   // If the button is pressed only one product can be selected
+   // TODO: format as function
+   if (padButtonPressed) {
+       padIsChosen = true;
+       tamponIsChosen = false;
+   } else if (tamponButtonPressed) {
+       tamponIsChosen = true;
+       padIsChosen = true;
+   }
 
    // Dispensing
 
