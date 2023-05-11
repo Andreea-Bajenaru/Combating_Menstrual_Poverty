@@ -14,8 +14,8 @@ int main(){
    bool dispensing = false;
    int dispenseTime = 5000; // 5 seconds
    int dispensingTimeout = 10000; // 10 seconds
-   bool isEmpty=false;
-   int dispenseCycles=0;
+   bool isEmpty = false;
+   int dispenseCycles = 0;
 
    // wiringPiSetup();			// Setup the library for Raspberry pi gpio
    // pinMode(0, OUTPUT);		// led ?
@@ -31,7 +31,7 @@ int main(){
        tamponIsChosen = false;
    } else if (tamponButtonPressed) {
        tamponIsChosen = true;
-       padIsChosen = true;
+       padIsChosen = false;
    }
 
 
@@ -48,8 +48,8 @@ int main(){
             auto startTime = chrono::steady_clock::now();
                 while (dispensing && chrono::steady_clock::now() - startTime < chrono::milliseconds(dispenseTime)) {
                     // Check if the dispenser becomes empty during dispensing , should be replaced with sensor
-                    if (dispenseCycles>20) {
-                        cout << "Error! Emtpy!!" << endl;
+                    if (dispenseCycles > 20) {
+                        cout << "Error! Empty!!" << endl;
                         dispensing = false;
                         break;
                     }
@@ -73,8 +73,8 @@ int main(){
 
       }
       //if there is no specific sensor to check?
-      if(dispenseCycles>20){
-         isEmpty=true;
+      if(dispenseCycles > 20){
+         isEmpty = true;
       }
 
    }
